@@ -1044,7 +1044,7 @@
 									"font": "Arial;13;0",
 									"left": 937,
 									"top": 468.5,
-									"width": 197.103515625,
+									"width": 196,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFPzg5oBVBb38="
@@ -1247,7 +1247,7 @@
 									"font": "Arial;13;0",
 									"left": 696.5,
 									"top": 596.5,
-									"width": 79.32275390625,
+									"width": 79,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFPzirMhceXP8="
@@ -1449,7 +1449,7 @@
 									"font": "Arial;13;0",
 									"left": 277.5,
 									"top": 524.5,
-									"width": 180.4599609375,
+									"width": 180,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFPzibWBZkPX4="
@@ -1651,7 +1651,7 @@
 									"font": "Arial;13;0",
 									"left": 363.5,
 									"top": 604.5,
-									"width": 170.3671875,
+									"width": 169,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFPzgV0xTLNe8="
@@ -1853,7 +1853,7 @@
 									"font": "Arial;13;0",
 									"left": 199,
 									"top": 396.5,
-									"width": 225.75048828125,
+									"width": 225,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFPzh0gBX7pCs="
@@ -2055,7 +2055,7 @@
 									"font": "Arial;13;0",
 									"left": 675,
 									"top": 887.5,
-									"width": 129.18994140625,
+									"width": 128,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFPza7kxHQwbw="
@@ -3897,7 +3897,7 @@
 									"font": "Arial;13;0",
 									"left": 662.5,
 									"top": 796.5,
-									"width": 145.80810546875,
+									"width": 145,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFP2dlHx/Q0wo="
@@ -4465,7 +4465,7 @@
 									"font": "Arial;13;0",
 									"left": 797,
 									"top": 412.5,
-									"width": 140.04443359375,
+									"width": 140,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFP2kO7UFho38="
@@ -5130,7 +5130,7 @@
 									"font": "Arial;13;0",
 									"left": 1037,
 									"top": 532.5,
-									"width": 140.04443359375,
+									"width": 140,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFP2heFzYCFRs="
@@ -5696,7 +5696,7 @@
 									"font": "Arial;13;0",
 									"left": 914.5,
 									"top": 684.5,
-									"width": 87.98095703125,
+									"width": 87,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFP21/70OpyOE="
@@ -6088,7 +6088,7 @@
 									"font": "Arial;13;0",
 									"left": 780.5,
 									"top": 308.5,
-									"width": 176.14990234375,
+									"width": 176,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFP3FilsFy22E="
@@ -11379,89 +11379,91 @@
 						"$ref": "AAAAAAGFWdO/9DpWpjM="
 					},
 					"name": "Front-End",
+					"ownedElements": [
+						{
+							"_type": "UMLInterface",
+							"_id": "AAAAAAGFWdXf9zsEz5I=",
+							"_parent": {
+								"$ref": "AAAAAAGFWdRGdjp7ooE="
+							},
+							"name": "ShowFE_IF"
+						},
+						{
+							"_type": "UMLComponent",
+							"_id": "AAAAAAGFWdSo4jqp1+Y=",
+							"_parent": {
+								"$ref": "AAAAAAGFWdRGdjp7ooE="
+							},
+							"name": "Front-End Business Logic",
+							"ownedElements": [
+								{
+									"_type": "UMLInterfaceRealization",
+									"_id": "AAAAAAGFWdY6zjsyBaQ=",
+									"_parent": {
+										"$ref": "AAAAAAGFWdSo4jqp1+Y="
+									},
+									"source": {
+										"$ref": "AAAAAAGFWdSo4jqp1+Y="
+									},
+									"target": {
+										"$ref": "AAAAAAGFWdXf9zsEz5I="
+									}
+								},
+								{
+									"_type": "UMLDependency",
+									"_id": "AAAAAAGFWdiO7DzWwNs=",
+									"_parent": {
+										"$ref": "AAAAAAGFWdSo4jqp1+Y="
+									},
+									"source": {
+										"$ref": "AAAAAAGFWdSo4jqp1+Y="
+									},
+									"target": {
+										"$ref": "AAAAAAGFWdg9bTyZxGg="
+									}
+								},
+								{
+									"_type": "UMLDependency",
+									"_id": "AAAAAAGFWdpCKT2pRSI=",
+									"_parent": {
+										"$ref": "AAAAAAGFWdSo4jqp1+Y="
+									},
+									"source": {
+										"$ref": "AAAAAAGFWdSo4jqp1+Y="
+									},
+									"target": {
+										"$ref": "AAAAAAGFWdi6ujz5IGA="
+									}
+								}
+							],
+							"stereotype": "control"
+						},
+						{
+							"_type": "UMLComponent",
+							"_id": "AAAAAAGFWdSutDrSQn4=",
+							"_parent": {
+								"$ref": "AAAAAAGFWdRGdjp7ooE="
+							},
+							"name": "Front-End GUI",
+							"ownedElements": [
+								{
+									"_type": "UMLDependency",
+									"_id": "AAAAAAGFWdZuEztd39E=",
+									"_parent": {
+										"$ref": "AAAAAAGFWdSutDrSQn4="
+									},
+									"source": {
+										"$ref": "AAAAAAGFWdSutDrSQn4="
+									},
+									"target": {
+										"$ref": "AAAAAAGFWdXf9zsEz5I="
+									}
+								}
+							],
+							"stereotype": "view"
+						}
+					],
 					"stereotype": "component"
-				},
-				{
-					"_type": "UMLComponent",
-					"_id": "AAAAAAGFWdSo4jqp1+Y=",
-					"_parent": {
-						"$ref": "AAAAAAGFWdO/9DpWpjM="
-					},
-					"name": "Front-End Business Logic",
-					"ownedElements": [
-						{
-							"_type": "UMLInterfaceRealization",
-							"_id": "AAAAAAGFWdY6zjsyBaQ=",
-							"_parent": {
-								"$ref": "AAAAAAGFWdSo4jqp1+Y="
-							},
-							"source": {
-								"$ref": "AAAAAAGFWdSo4jqp1+Y="
-							},
-							"target": {
-								"$ref": "AAAAAAGFWdXf9zsEz5I="
-							}
-						},
-						{
-							"_type": "UMLDependency",
-							"_id": "AAAAAAGFWdiO7DzWwNs=",
-							"_parent": {
-								"$ref": "AAAAAAGFWdSo4jqp1+Y="
-							},
-							"source": {
-								"$ref": "AAAAAAGFWdSo4jqp1+Y="
-							},
-							"target": {
-								"$ref": "AAAAAAGFWdg9bTyZxGg="
-							}
-						},
-						{
-							"_type": "UMLDependency",
-							"_id": "AAAAAAGFWdpCKT2pRSI=",
-							"_parent": {
-								"$ref": "AAAAAAGFWdSo4jqp1+Y="
-							},
-							"source": {
-								"$ref": "AAAAAAGFWdSo4jqp1+Y="
-							},
-							"target": {
-								"$ref": "AAAAAAGFWdi6ujz5IGA="
-							}
-						}
-					],
-					"stereotype": "control"
-				},
-				{
-					"_type": "UMLComponent",
-					"_id": "AAAAAAGFWdSutDrSQn4=",
-					"_parent": {
-						"$ref": "AAAAAAGFWdO/9DpWpjM="
-					},
-					"name": "Front-End GUI",
-					"ownedElements": [
-						{
-							"_type": "UMLDependency",
-							"_id": "AAAAAAGFWdZuEztd39E=",
-							"_parent": {
-								"$ref": "AAAAAAGFWdSutDrSQn4="
-							},
-							"source": {
-								"$ref": "AAAAAAGFWdSutDrSQn4="
-							},
-							"target": {
-								"$ref": "AAAAAAGFWdXf9zsEz5I="
-							}
-						}
-					],
-					"stereotype": "view"
-				},
-				{
-					"_type": "UMLInterface",
-					"_id": "AAAAAAGFWdXf9zsEz5I=",
-					"_parent": {
-						"$ref": "AAAAAAGFWdO/9DpWpjM="
-					},
-					"name": "ShowFE_IF"
 				},
 				{
 					"_type": "UMLComponent",
@@ -11470,138 +11472,140 @@
 						"$ref": "AAAAAAGFWdO/9DpWpjM="
 					},
 					"name": "Back-End",
+					"ownedElements": [
+						{
+							"_type": "UMLComponent",
+							"_id": "AAAAAAGFWdal5TuYxuI=",
+							"_parent": {
+								"$ref": "AAAAAAGFWdaSZDtvgZ0="
+							},
+							"name": "Authentication",
+							"stereotype": "control"
+						},
+						{
+							"_type": "UMLComponent",
+							"_id": "AAAAAAGFWdcg8zvHSt8=",
+							"_parent": {
+								"$ref": "AAAAAAGFWdaSZDtvgZ0="
+							},
+							"name": "EventManagement",
+							"ownedElements": [
+								{
+									"_type": "UMLDependency",
+									"_id": "AAAAAAGFWdieWTznpG8=",
+									"_parent": {
+										"$ref": "AAAAAAGFWdcg8zvHSt8="
+									},
+									"source": {
+										"$ref": "AAAAAAGFWdcg8zvHSt8="
+									},
+									"target": {
+										"$ref": "AAAAAAGFWdg9bTyZxGg="
+									}
+								},
+								{
+									"_type": "UMLInterfaceRealization",
+									"_id": "AAAAAAGFWdo0+z2YpjI=",
+									"_parent": {
+										"$ref": "AAAAAAGFWdcg8zvHSt8="
+									},
+									"source": {
+										"$ref": "AAAAAAGFWdcg8zvHSt8="
+									},
+									"target": {
+										"$ref": "AAAAAAGFWdi6ujz5IGA="
+									}
+								}
+							],
+							"stereotype": "control"
+						},
+						{
+							"_type": "UMLComponent",
+							"_id": "AAAAAAGFWddrFTvzPfU=",
+							"_parent": {
+								"$ref": "AAAAAAGFWdaSZDtvgZ0="
+							},
+							"name": "DataManagement",
+							"ownedElements": [
+								{
+									"_type": "UMLDependency",
+									"_id": "AAAAAAGFWdgvszyI1ZQ=",
+									"_parent": {
+										"$ref": "AAAAAAGFWddrFTvzPfU="
+									},
+									"source": {
+										"$ref": "AAAAAAGFWddrFTvzPfU="
+									},
+									"target": {
+										"$ref": "AAAAAAGFWdfkqTxMnDU="
+									}
+								},
+								{
+									"_type": "UMLInterfaceRealization",
+									"_id": "AAAAAAGFWdiF0zzFhY4=",
+									"_parent": {
+										"$ref": "AAAAAAGFWddrFTvzPfU="
+									},
+									"source": {
+										"$ref": "AAAAAAGFWddrFTvzPfU="
+									},
+									"target": {
+										"$ref": "AAAAAAGFWdg9bTyZxGg="
+									}
+								}
+							],
+							"stereotype": "control"
+						},
+						{
+							"_type": "UMLComponent",
+							"_id": "AAAAAAGFWdfE/zwhjak=",
+							"_parent": {
+								"$ref": "AAAAAAGFWdaSZDtvgZ0="
+							},
+							"name": "DB",
+							"ownedElements": [
+								{
+									"_type": "UMLInterfaceRealization",
+									"_id": "AAAAAAGFWdglUjx3Erg=",
+									"_parent": {
+										"$ref": "AAAAAAGFWdfE/zwhjak="
+									},
+									"source": {
+										"$ref": "AAAAAAGFWdfE/zwhjak="
+									},
+									"target": {
+										"$ref": "AAAAAAGFWdfkqTxMnDU="
+									}
+								}
+							],
+							"stereotype": "data"
+						},
+						{
+							"_type": "UMLInterface",
+							"_id": "AAAAAAGFWdfkqTxMnDU=",
+							"_parent": {
+								"$ref": "AAAAAAGFWdaSZDtvgZ0="
+							},
+							"name": "DB_IF"
+						},
+						{
+							"_type": "UMLInterface",
+							"_id": "AAAAAAGFWdg9bTyZxGg=",
+							"_parent": {
+								"$ref": "AAAAAAGFWdaSZDtvgZ0="
+							},
+							"name": "Data_IF"
+						},
+						{
+							"_type": "UMLInterface",
+							"_id": "AAAAAAGFWdi6ujz5IGA=",
+							"_parent": {
+								"$ref": "AAAAAAGFWdaSZDtvgZ0="
+							},
+							"name": "Event_IF"
+						}
+					],
 					"stereotype": "component"
-				},
-				{
-					"_type": "UMLComponent",
-					"_id": "AAAAAAGFWdal5TuYxuI=",
-					"_parent": {
-						"$ref": "AAAAAAGFWdO/9DpWpjM="
-					},
-					"name": "Authentication",
-					"stereotype": "control"
-				},
-				{
-					"_type": "UMLComponent",
-					"_id": "AAAAAAGFWdcg8zvHSt8=",
-					"_parent": {
-						"$ref": "AAAAAAGFWdO/9DpWpjM="
-					},
-					"name": "EventManagement",
-					"ownedElements": [
-						{
-							"_type": "UMLDependency",
-							"_id": "AAAAAAGFWdieWTznpG8=",
-							"_parent": {
-								"$ref": "AAAAAAGFWdcg8zvHSt8="
-							},
-							"source": {
-								"$ref": "AAAAAAGFWdcg8zvHSt8="
-							},
-							"target": {
-								"$ref": "AAAAAAGFWdg9bTyZxGg="
-							}
-						},
-						{
-							"_type": "UMLInterfaceRealization",
-							"_id": "AAAAAAGFWdo0+z2YpjI=",
-							"_parent": {
-								"$ref": "AAAAAAGFWdcg8zvHSt8="
-							},
-							"source": {
-								"$ref": "AAAAAAGFWdcg8zvHSt8="
-							},
-							"target": {
-								"$ref": "AAAAAAGFWdi6ujz5IGA="
-							}
-						}
-					],
-					"stereotype": "control"
-				},
-				{
-					"_type": "UMLComponent",
-					"_id": "AAAAAAGFWddrFTvzPfU=",
-					"_parent": {
-						"$ref": "AAAAAAGFWdO/9DpWpjM="
-					},
-					"name": "DataManagement",
-					"ownedElements": [
-						{
-							"_type": "UMLDependency",
-							"_id": "AAAAAAGFWdgvszyI1ZQ=",
-							"_parent": {
-								"$ref": "AAAAAAGFWddrFTvzPfU="
-							},
-							"source": {
-								"$ref": "AAAAAAGFWddrFTvzPfU="
-							},
-							"target": {
-								"$ref": "AAAAAAGFWdfkqTxMnDU="
-							}
-						},
-						{
-							"_type": "UMLInterfaceRealization",
-							"_id": "AAAAAAGFWdiF0zzFhY4=",
-							"_parent": {
-								"$ref": "AAAAAAGFWddrFTvzPfU="
-							},
-							"source": {
-								"$ref": "AAAAAAGFWddrFTvzPfU="
-							},
-							"target": {
-								"$ref": "AAAAAAGFWdg9bTyZxGg="
-							}
-						}
-					],
-					"stereotype": "control"
-				},
-				{
-					"_type": "UMLComponent",
-					"_id": "AAAAAAGFWdfE/zwhjak=",
-					"_parent": {
-						"$ref": "AAAAAAGFWdO/9DpWpjM="
-					},
-					"name": "DB",
-					"ownedElements": [
-						{
-							"_type": "UMLInterfaceRealization",
-							"_id": "AAAAAAGFWdglUjx3Erg=",
-							"_parent": {
-								"$ref": "AAAAAAGFWdfE/zwhjak="
-							},
-							"source": {
-								"$ref": "AAAAAAGFWdfE/zwhjak="
-							},
-							"target": {
-								"$ref": "AAAAAAGFWdfkqTxMnDU="
-							}
-						}
-					],
-					"stereotype": "data"
-				},
-				{
-					"_type": "UMLInterface",
-					"_id": "AAAAAAGFWdfkqTxMnDU=",
-					"_parent": {
-						"$ref": "AAAAAAGFWdO/9DpWpjM="
-					},
-					"name": "DB_IF"
-				},
-				{
-					"_type": "UMLInterface",
-					"_id": "AAAAAAGFWdg9bTyZxGg=",
-					"_parent": {
-						"$ref": "AAAAAAGFWdO/9DpWpjM="
-					},
-					"name": "Data_IF"
-				},
-				{
-					"_type": "UMLInterface",
-					"_id": "AAAAAAGFWdi6ujz5IGA=",
-					"_parent": {
-						"$ref": "AAAAAAGFWdO/9DpWpjM="
-					},
-					"name": "Event_IF"
 				}
 			]
 		}
