@@ -1,6 +1,7 @@
 package it.centrosport.webserver.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,19 +40,19 @@ public class UserController {
 	}
 	
 	@PostMapping("signUp")
-	public User signUp(@RequestBody UserDto dto) {
+	public User signUp(@Validated @RequestBody UserDto dto) {
 		var user = dtoToEntity(dto);
 		return userService.signUp(user);
 	}
 	
 	@PostMapping("login")
-	public User login(@RequestBody UserDto dto) {
+	public User login(@Validated @RequestBody UserDto dto) {
 		var user = dtoToEntity(dto);
 		return userService.login(user);
 	}
 	
 	@PostMapping("logout")
-	public String logout(@RequestBody UserDto dto) {
+	public String logout(@Validated @RequestBody UserDto dto) {
 		var user = dtoToEntity(dto);
 		userService.logout(user);
 		return "Logged out";
