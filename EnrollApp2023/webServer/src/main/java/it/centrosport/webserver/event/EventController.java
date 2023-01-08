@@ -21,6 +21,8 @@ public class EventController {
 	
 	private Event dtoToEntity(EventDto eventDto) {
 		var event = new Event();
+		event.setLocation(eventDto.getLocation());
+		event.setName(eventDto.getName());
 		event.setDateTime(eventDto.getDateTime());
 		return event;
 	}

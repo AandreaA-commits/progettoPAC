@@ -3,9 +3,13 @@ package it.centrosport.webserver.event;
 import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class EventDto {
 
+	@NotBlank
 	private String name;
+	@NotBlank
 	private String location;
 	
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Europe/Rome")
