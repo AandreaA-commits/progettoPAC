@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class PitchService {
-	//questa classe rappresenta il servizio vero e proprio ed implementa i metodi di PitchRepository
+	//questa classe rappresenta il servizio vero e proprio
 	
 	
 	private final PitchRepository pitchRepository;
