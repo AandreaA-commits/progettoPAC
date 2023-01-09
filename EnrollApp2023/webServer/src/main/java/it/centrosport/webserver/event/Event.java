@@ -17,7 +17,6 @@ public class Event {
 	private String location;
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Europe/Rome")
 	private LocalDateTime dateTime;
-	// enumerativo per la tipologia di sport??
 	
 	public Event() {}
 	
