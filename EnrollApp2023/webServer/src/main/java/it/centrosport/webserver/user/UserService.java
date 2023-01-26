@@ -11,10 +11,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class UserService {
-	private final UserRepository userRepository;
+	private final UserRepositoryIF userRepository;
 	
 	@Autowired
-	public UserService(UserRepository user) {
+	public UserService(UserRepositoryIF user) {
 		this.userRepository = user;
 	}
 	

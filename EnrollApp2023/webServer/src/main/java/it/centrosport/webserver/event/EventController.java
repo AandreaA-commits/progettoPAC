@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "events")
-public class EventController {
+public class EventController implements EventControllerIF{
 	private final EventService eventService;
 	
 	@Autowired

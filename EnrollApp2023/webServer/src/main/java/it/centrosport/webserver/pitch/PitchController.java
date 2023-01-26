@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "pitches")
-public class PitchController {
+public class PitchController implements PitchControllerIF{
 	private final PitchService pitchService;
 	
     @Autowired

@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class EventService {
+public class EventService implements EventServiceIF {
 
-	private final EventRepository eventRepository;
+	private final EventRepositoryIF eventRepository;
 	
 	@Autowired
-	public EventService(EventRepository eventRepository) {
+	public EventService(EventRepositoryIF eventRepository) {
 		this.eventRepository = eventRepository;
 	}
 	

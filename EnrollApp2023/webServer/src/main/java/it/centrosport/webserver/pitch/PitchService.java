@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class PitchService {
-	//questa classe rappresenta il servizio vero e proprio
-	
-	
-	private final PitchRepository pitchRepository;
+public class PitchService implements PitchServiceIF{
+
+	private final PitchRepositoryIF pitchRepository;
 	
 	@Autowired
-	public PitchService(PitchRepository pitchRepository) {
+	public PitchService(PitchRepositoryIF pitchRepository) {
 		this.pitchRepository = pitchRepository;
 	}
 	
