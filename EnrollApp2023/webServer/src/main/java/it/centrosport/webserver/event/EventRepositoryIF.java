@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 
-public interface EventRepository extends MongoRepository<Event, String>{
+public interface EventRepositoryIF extends MongoRepository<Event, String>{
 
 	public Event findByNameAndLocation(String name, String location);
 	public List<Event> findByLocation(String location);

@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 
-public interface PitchRepository extends MongoRepository<Pitch, String>{
+public interface PitchRepositoryIF extends MongoRepository<Pitch, String>{
 	
 	//Aggiungere qui sotto partiolari query sul database
 	
