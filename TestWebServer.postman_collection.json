@@ -1,16 +1,70 @@
 {
 	"info": {
-		"_postman_id": "5a0ae42c-e2e6-474d-b775-dd77948a1772",
+		"_postman_id": "1b82f991-b309-4d64-9f6a-475023c33667",
 		"name": "TestWebServer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24720163"
+		"_exporter_id": "19149539"
 	},
 	"item": [
 		{
 			"name": "Iterazione1",
 			"item": [
 				{
-					"name": "StampaUtenti Copy",
+					"name": "SignUp Utente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"ciaoAAA\",\r\n    \"lastName\": \"Secondo\",\r\n    \"email\": \"prova2@unibg.it\",\r\n    \"password\": \"main\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/signUp",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"signUp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "StampaUtenti",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -28,19 +82,39 @@
 					"response": []
 				},
 				{
-					"name": "StampaUtente Copy",
+					"name": "StampaUtente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:8080/users/63b6e88290821548fe478189",
+							"raw": "localhost:8080/users/63d4309e01b4d21cf5a8af22",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"users",
-								"63b6e88290821548fe478189"
+								"63d4309e01b4d21cf5a8af22"
 							]
 						}
 					},
@@ -48,12 +122,25 @@
 				},
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"\",\r\n    \"lastName\": \"\",\r\n    \"email\": \"Prova@prova.it\",\r\n    \"password\": \"psw\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"ciaoAAA\",\r\n    \"lastName\": \"Secondo\",\r\n    \"email\": \"prova2@unibg.it\",\r\n    \"password\": \"main\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -75,13 +162,26 @@
 					"response": []
 				},
 				{
-					"name": "Logout Utente",
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"prova\",\r\n    \"lastName\": \"prova\",\r\n    \"email\": \"Prova@prova.it\",\r\n    \"password\": \"psw\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"ciaoAAA\",\r\n    \"lastName\": \"Secondo\",\r\n    \"email\": \"prova2@unibg.it\",\r\n    \"password\": \"main\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -103,10 +203,73 @@
 					"response": []
 				},
 				{
-					"name": "Cancellazione Utente",
+					"name": "DeleteUtenteEsistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/63d4309e01b4d21cf5a8af22",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"63d4309e01b4d21cf5a8af22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUtenteNonEsistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "localhost:8080/users/63b6f7dcc8b25863c5c58ae6",
 							"host": [
@@ -122,13 +285,26 @@
 					"response": []
 				},
 				{
-					"name": "Registrazione Utente",
+					"name": "SignUpUtenteEsistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", () => {\r",
+									"  pm.expect(pm.response.code).to.eql(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"prova\",\r\n    \"lastName\": \"prova\",\r\n    \"email\": \"Prova@prova.it\",\r\n    \"passwdord\": \"psw\"\r\n}",
+							"raw": "{\r\n\r\n    \"firstName\": \"ciaoAAA\",\r\n    \"lastName\": \"Secondo\",\r\n    \"email\": \"prova2@unibg.it\",\r\n    \"password\": \"main\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
