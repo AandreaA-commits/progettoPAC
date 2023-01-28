@@ -1,8 +1,10 @@
 package it.centrosport.webserver.booking;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Booking {
 
@@ -11,10 +13,11 @@ public class Booking {
 
 	private String idCampoPrenotato;
 	private String idUtentePrenotazione;
-	private Date dataPrenotazione;
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Europe/Rome")
+	private LocalDateTime dataPrenotazione;
 	private int nPostiPrenotati;
 
-	public Booking(String idCampoPrenotato, String idUtentePrenotazione, Date dataPrenotazione, int nPostiPrenotati) {
+	public Booking(String idCampoPrenotato, String idUtentePrenotazione, LocalDateTime dataPrenotazione, int nPostiPrenotati) {
 		this.idCampoPrenotato = idCampoPrenotato;
 		this.idUtentePrenotazione = idUtentePrenotazione;
 		this.dataPrenotazione = dataPrenotazione;
@@ -47,11 +50,11 @@ public class Booking {
 		this.idUtentePrenotazione = idUtentePrenotazione;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return dataPrenotazione;
 	}
 
-	public void setDate(Date dataPrenotazione) {
+	public void setDate(LocalDateTime dataPrenotazione) {
 		this.dataPrenotazione = dataPrenotazione;
 	}
 

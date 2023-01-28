@@ -1,6 +1,8 @@
 package it.centrosport.webserver.booking;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -10,7 +12,8 @@ public class BookingDto {
 	@NotBlank
 	private String idUtentePrenotazione;
 	@NotBlank
-	private Date dataPrenotazione;
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Europe/Rome")
+	private LocalDateTime dataPrenotazione;
 	@NotBlank
 	private int nPostiPrenotati;
 
@@ -30,11 +33,11 @@ public class BookingDto {
 		this.idUtentePrenotazione = idUtentePrenotazione;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return dataPrenotazione;
 	}
 
-	public void setDate(Date dataPrenotazione) {
+	public void setDate(LocalDateTime dataPrenotazione) {
 		this.dataPrenotazione = dataPrenotazione;
 	}
 

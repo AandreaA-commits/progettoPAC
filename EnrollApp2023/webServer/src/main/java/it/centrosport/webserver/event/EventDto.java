@@ -11,7 +11,7 @@ public class EventDto {
 	private String name;
 	@NotBlank
 	private String location;
-	
+	@NotBlank
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Europe/Rome")
 	private LocalDateTime dateTime;
 	
