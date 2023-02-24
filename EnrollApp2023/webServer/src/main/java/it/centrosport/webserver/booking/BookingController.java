@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.centrosport.webserver.event.EventService;
+
 @RestController
 @RequestMapping(path = "bookings")
 public class BookingController implements BookingControllerIF {
@@ -32,26 +34,23 @@ public class BookingController implements BookingControllerIF {
 
 	@GetMapping
 	public Iterable<Booking> getBookings() {
-		// TODO Auto-generated method stub
-		return null;
+		return bookingService.getBookings();
 	}
 
 	@GetMapping("{idBooking}")
 	public Booking getBooking(String idBooking) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookingService.getBooking(idBooking);
 	}
 
 	@DeleteMapping("{idBooking}")
 	public void deleteBooking(@PathVariable("idBooking") String idBooking) {
-		// TODO Auto-generated method stub
-		
+		bookingService.deleteBooking(idBooking);
 	}
 
 	@PostMapping
 	public Booking createBooking(@RequestBody BookingDto bookingDto) {
-		// TODO Auto-generated method stub
-		return null;
+		var booking = dtoToBooking(bookingDto);
+		return bookingService.createBooking(booking);
 	}
 	
 	
