@@ -12,4 +12,6 @@ public interface EventControllerIF {
 	public void deleteEvent(@PathVariable("eventId") String eventId);
 
 	public Event createEvent(@RequestBody EventDto eventDto);
+	
+	public EventEnrollment createEventEnrollment(@RequestBody EventEnrollmentDto eventEnrollmentDto);
 }

@@ -13,10 +13,12 @@ import org.springframework.web.server.ResponseStatusException;
 public class EventService implements EventServiceIF {
 
 	private final EventRepositoryIF eventRepository;
+	private final EventEnrollmentRepositoryIF eventEnrollmentRepository;
 	
 	@Autowired
-	public EventService(EventRepositoryIF eventRepository) {
+	public EventService(EventRepositoryIF eventRepository, EventEnrollmentRepositoryIF eventEnrollmentRepository) {
 		this.eventRepository = eventRepository;
+		this.eventEnrollmentRepository = eventEnrollmentRepository;
 	}
 	
 	public Event getEvent(String id) {
@@ -39,5 +41,9 @@ public class EventService implements EventServiceIF {
 		if(!eventToDelete.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID non presente");
 		eventRepository.delete(eventToDelete.get());
 		
+	}
+
+	public EventEnrollment createEventEnrollment(EventEnrollment eventEnrollment) {
+		return eventEnrollmentRepository.save(eventEnrollment);
 	}
 }

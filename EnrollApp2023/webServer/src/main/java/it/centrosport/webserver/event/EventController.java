@@ -27,6 +27,13 @@ public class EventController implements EventControllerIF{
 		return event;
 	}
 	
+	private EventEnrollment dtoToEntity(EventEnrollmentDto eventEnrollmentDto) {
+		var eventEnrollment = new EventEnrollment();
+		eventEnrollment.setIdUtenteIscrizione(eventEnrollmentDto.getIdUtenteIscrizione());
+		eventEnrollment.setNumIscritti(eventEnrollmentDto.getNumIscritti());
+		return eventEnrollment;
+	}
+	
 	@GetMapping
 	public Iterable<Event> getEvents(){
 		return eventService.getEvents();
@@ -46,5 +53,11 @@ public class EventController implements EventControllerIF{
 	public Event createEvent(@RequestBody EventDto eventDto) {
 		var event = dtoToEntity(eventDto);
 		return eventService.createEvent(event);
+	}
+	
+	@PostMapping("Enroll")
+	public EventEnrollment createEventEnrollment(@RequestBody EventEnrollmentDto eventEnrollmentDto) {
+		var eventEnrollment = dtoToEntity(eventEnrollmentDto);
+		return eventService.createEventEnrollment(eventEnrollment);
 	}
 }
