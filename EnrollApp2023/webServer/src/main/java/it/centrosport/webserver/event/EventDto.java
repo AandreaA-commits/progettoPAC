@@ -14,6 +14,8 @@ public class EventDto {
 	@NotBlank
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Europe/Rome")
 	private LocalDateTime dateTime;
+	@NotBlank
+	private int maxPlayers;
 	
 	public String getName() {
 		return name;
@@ -38,4 +40,13 @@ public class EventDto {
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
 	}
+
+	public int getMaxPlayers() {
+		return maxPlayers;
+	}
+
+	public void setMaxPlayers(int maxPlayers) {
+		this.maxPlayers = maxPlayers;
+	}
+	
 }

@@ -31,6 +31,7 @@ public class EventController implements EventControllerIF{
 		var eventEnrollment = new EventEnrollment();
 		eventEnrollment.setIdUtenteIscrizione(eventEnrollmentDto.getIdUtenteIscrizione());
 		eventEnrollment.setNumIscritti(eventEnrollmentDto.getNumIscritti());
+		eventEnrollment.setIdEvent(eventEnrollmentDto.getIdEvent());
 		return eventEnrollment;
 	}
 	
@@ -55,7 +56,7 @@ public class EventController implements EventControllerIF{
 		return eventService.createEvent(event);
 	}
 	
-	@PostMapping("Enroll")
+	@PostMapping("enroll")
 	public EventEnrollment createEventEnrollment(@RequestBody EventEnrollmentDto eventEnrollmentDto) {
 		var eventEnrollment = dtoToEntity(eventEnrollmentDto);
 		return eventService.createEventEnrollment(eventEnrollment);

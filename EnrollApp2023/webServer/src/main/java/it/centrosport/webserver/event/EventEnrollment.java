@@ -7,8 +7,16 @@ public class EventEnrollment {
 	@Id
 	private String idEnrollment;
 	
+	private String idEvent;
 	private String idUtenteIscrizione;
 	private int numIscritti;
+	
+	public String getIdEvent() {
+		return idEvent;
+	}
+	public void setIdEvent(String idEvent) {
+		this.idEvent = idEvent;
+	}
 	
 	public String getIdEnrollment() {
 		return idEnrollment;

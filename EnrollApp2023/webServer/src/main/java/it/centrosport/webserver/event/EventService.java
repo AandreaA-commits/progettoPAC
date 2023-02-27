@@ -1,5 +1,6 @@
 package it.centrosport.webserver.event;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class EventService implements EventServiceIF {
 
+	private final static int MAX_TEAM = 5;
 	private final EventRepositoryIF eventRepository;
 	private final EventEnrollmentRepositoryIF eventEnrollmentRepository;
 	
@@ -44,6 +46,16 @@ public class EventService implements EventServiceIF {
 	}
 
 	public EventEnrollment createEventEnrollment(EventEnrollment eventEnrollment) {
+		Optional<Event> event = eventRepository.findById(eventEnrollment.getIdEvent());
+		if(!event.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Evento non esistente");
+		int nPlayers = 0;
+		ArrayList<EventEnrollment> p = event.get().getPlayers();
+		for (EventEnrollment e : p) {
+			nPlayers += e.getNumIscritti();
+		}
+		if(nPlayers >= event.get().getMaxPlayers()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Iscrizioni massime raggiunte");
+		if(eventEnrollment.getNumIscritti() >= MAX_TEAM) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Troppi giocatori!");
+		event.get().getPlayers().add(eventEnrollment);
 		return eventEnrollmentRepository.save(eventEnrollment);
 	}
 }
