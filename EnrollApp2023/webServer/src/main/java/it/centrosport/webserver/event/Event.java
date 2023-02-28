@@ -77,4 +77,8 @@ public class Event {
 	public void setMaxPlayers(int maxPlayers) {
 		this.maxPlayers = maxPlayers;
 	}
+	
+	public void addPlayers(EventEnrollment eventEnrollment) {
+		this.players.add(eventEnrollment);
+	}
 }

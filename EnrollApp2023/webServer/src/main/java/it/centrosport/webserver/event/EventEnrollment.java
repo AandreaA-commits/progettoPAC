@@ -11,6 +11,14 @@ public class EventEnrollment {
 	private String idUtenteIscrizione;
 	private int numIscritti;
 	
+	public EventEnrollment() {}
+	
+	public EventEnrollment(String idEvent, String idUtenteIscrizione, int numIscritti, Event event) {
+		this.idEvent = idEvent;
+		this.idUtenteIscrizione = idUtenteIscrizione;
+		this.numIscritti = numIscritti;
+	}
+
 	public String getIdEvent() {
 		return idEvent;
 	}

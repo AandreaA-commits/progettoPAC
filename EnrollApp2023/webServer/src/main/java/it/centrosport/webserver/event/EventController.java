@@ -1,5 +1,7 @@
 package it.centrosport.webserver.event;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +26,7 @@ public class EventController implements EventControllerIF{
 		event.setLocation(eventDto.getLocation());
 		event.setName(eventDto.getName());
 		event.setDateTime(eventDto.getDateTime());
+		event.setMaxPlayers(eventDto.getMaxPlayers());
 		return event;
 	}
 	
@@ -60,5 +63,10 @@ public class EventController implements EventControllerIF{
 	public EventEnrollment createEventEnrollment(@RequestBody EventEnrollmentDto eventEnrollmentDto) {
 		var eventEnrollment = dtoToEntity(eventEnrollmentDto);
 		return eventService.createEventEnrollment(eventEnrollment);
+	}
+	
+	@GetMapping("players/{eventId}")
+	public ArrayList<EventEnrollment> getPlayers(@PathVariable String eventId) {
+		return eventService.getEvent(eventId).getPlayers();
 	}
 }

@@ -42,7 +42,6 @@ public class EventService implements EventServiceIF {
 		Optional<Event> eventToDelete = eventRepository.findById(id);
 		if(!eventToDelete.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID non presente");
 		eventRepository.delete(eventToDelete.get());
-		
 	}
 
 	public EventEnrollment createEventEnrollment(EventEnrollment eventEnrollment) {
@@ -54,8 +53,16 @@ public class EventService implements EventServiceIF {
 			nPlayers += e.getNumIscritti();
 		}
 		if(nPlayers >= event.get().getMaxPlayers()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Iscrizioni massime raggiunte");
-		if(eventEnrollment.getNumIscritti() >= MAX_TEAM) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Troppi giocatori!");
-		event.get().getPlayers().add(eventEnrollment);
+		if(eventEnrollment.getNumIscritti() > MAX_TEAM) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Troppi giocatori!");
+		event.get().addPlayers(eventEnrollment);
+		eventRepository.save(event.get());
 		return eventEnrollmentRepository.save(eventEnrollment);
+	}
+	
+	public ArrayList<EventEnrollment> getPlayers(String id) {
+		Optional<Event> event = eventRepository.findById(id);
+		if(!event.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid ID");
+		
+		return event.get().getPlayers();
 	}
 }
