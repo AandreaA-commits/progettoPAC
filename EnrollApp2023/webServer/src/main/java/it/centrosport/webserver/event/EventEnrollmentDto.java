@@ -1,9 +1,5 @@
 package it.centrosport.webserver.event;
 
-import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import jakarta.validation.constraints.NotBlank;
 
 public class EventEnrollmentDto {

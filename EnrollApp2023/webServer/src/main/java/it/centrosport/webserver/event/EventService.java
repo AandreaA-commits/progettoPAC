@@ -73,62 +73,82 @@ public class EventService implements EventServiceIF {
 	@Override
 	public ArrayList<ArrayList<String>> getTeams(String idEvent) {
 		
-		ArrayList<ArrayList<Integer>> fin = new ArrayList<ArrayList<Integer>>();
+		//Array List di squadre(ArrayList di id utenti)
+		ArrayList<ArrayList<Integer>> fin = new ArrayList<ArrayList<Integer>>(); 
+		
+		//ArrayList di indici (inseriti in una squadra)
 		ArrayList<Integer> idx = new ArrayList<Integer>();
+		
+		//ArrayList di interi (numero iscritti)
 		ArrayList<Integer> par = new ArrayList<Integer>();
+		
+		//Copia di supporto per la lista di iscrizioni
 		ArrayList<EventEnrollment> help = new ArrayList<EventEnrollment>();
 		
 		Optional<Event> event = eventRepository.findById(idEvent);
-		if(!event.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Evento non esistente");
+		if(!event.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, 
+				"Evento non esistente");
 		
-		
+		//ArrayList di iscrizioni all'evento
 		ArrayList<EventEnrollment> lista = event.get().getPlayers();
 		
+		//Somma totale dei partecipanti (numIscritti)
 		int nPlayers = 0;
 		for (EventEnrollment ee : lista) {
 			nPlayers += ee.getNumIscritti();
 		}
-		if(nPlayers < MIN_PLAYERS) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Almeno " + MIN_PLAYERS + " giocatori devono partecipare all'evento");
+		if(nPlayers < MIN_PLAYERS) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
+				"Almeno " + MIN_PLAYERS + " giocatori devono partecipare all'evento");
 		
+		//Ordiniamo l'ArrayList in ordine decrescente
 		Collections.sort(lista, Collections.reverseOrder());
 		
-		help.addAll(lista);
+		help.addAll(lista);//Copia di lista in help
 		
-		
+		// Tentativo di formare squadre di esattamente MAX_TEAMS 
+		//(preferibile rispetto alla creazione di squadre flessibili)
 		for(int i=0; i<help.size(); i++) {
 			idx.add(i);
 			par.add(help.get(i).getNumIscritti());
 			int sum = help.get(i).getNumIscritti();
 			
+			//Caso in cui c'è un iscrizione di esattamente MAX_TEAM
 			if(sum == MAX_TEAM) {
 				fin.add(idx);
 			}
 			
+			//Provo ad accoppiare l'iscrizione con altre
 			for(int j=i+1; j<help.size(); j++) {
+				//Se formo una squadra perfetta, la confermo
 				if(sum + help.get(j).getNumIscritti() == MAX_TEAM) {
 					sum += help.get(j).getNumIscritti();
 					par.add(help.get(j).getNumIscritti());
 					idx.add(j);
 					fin.add(idx);
-				} else if(sum + help.get(j).getNumIscritti() < MAX_TEAM) {
+				}
+				//Se la squadra è ancora inferiore a MAX_TEAM, aggiungo l'iscrizione e continuo
+				else if(sum + help.get(j).getNumIscritti() < MAX_TEAM) {
 					par.add(help.get(j).getNumIscritti());
 					sum += help.get(j).getNumIscritti();
 					idx.add(j);
 				}
 			}
-			
+			//In help modifico il valore di numIscritti delle iscrizioni aggiunte ad un MAX_VALUE 
+			//in modo che l'algoritmo non le utilizzi più. 
+			//Non cancelliamo l'elemento in modo da mantenere gli indici
 			if(sum == MAX_TEAM) {
 				for(int j=0; j<idx.size(); j++) {
 					help.get(idx.get(j)).setNumIscritti(MAX_VALUE);
 					
 				}
 			}
-			
+			//Svuoto le liste idx e par
 			idx = new ArrayList<>();
 			par = new ArrayList<>();
 		}
 		
-		//parte flex	
+		//Una volta create le squadre di numero perfetto MAX_TEAM, con i restanti si provano a 
+		//creare squadre con dimensione flessibile (MAX_TEAM + FLEX)
 		for(int i=0; i<help.size(); i++) {
 			idx.add(i);
 			par.add(help.get(i).getNumIscritti());
@@ -138,8 +158,10 @@ public class EventService implements EventServiceIF {
 				fin.add(idx);
 			}
 			
+			//Cambia solo la condizione per l'aggiunta nelle squadre
 			for(int j=i+1; j<help.size(); j++) {
-				if(sum + help.get(j).getNumIscritti() <= MAX_TEAM + FLEX && sum + help.get(j).getNumIscritti() > MAX_TEAM ) {
+				if(sum + help.get(j).getNumIscritti() <= MAX_TEAM + FLEX && sum + 
+						help.get(j).getNumIscritti() > MAX_TEAM ) {
 					sum += help.get(j).getNumIscritti();
 					par.add(help.get(j).getNumIscritti());
 					idx.add(j);
@@ -151,7 +173,7 @@ public class EventService implements EventServiceIF {
 				}
 			}
 			
-			if(sum == MAX_TEAM) {
+			if(sum <= MAX_TEAM + FLEX && sum > MAX_TEAM) {
 				for(int j=0; j<idx.size(); j++) {
 					help.get(idx.get(j)).setNumIscritti(MAX_VALUE);
 				}
@@ -161,12 +183,40 @@ public class EventService implements EventServiceIF {
 			par = new ArrayList<>();
 		}
 		
-		return getEventTeams(fin, lista);
+		//Infine si prova ad aggiungere a squadre esistenti le ultime iscrizioni rimaste
+		for(int i=0;i<help.size();i++) {
+			//Escludo già i valori posti a MAX_VALUE in help
+			if(help.get(i).getNumIscritti()<MAX_TEAM) {
+				for(int j=0;j<fin.size();j++) {
+					int sumSquad = 0;
+					for(int z=0;z<fin.get(j).size();z++) {
+						sumSquad+= fin.get(j).get(z);
+					}
+					if(sumSquad + help.get(i).getNumIscritti()<MAX_TEAM + FLEX) {
+						fin.get(j).add(i);
+						help.get(i).setNumIscritti(MAX_VALUE);
+					}
+				}
+			}
+		}
+		//Indici delle iscrizioni non inserite in squadre
+		ArrayList<Integer> noTeam = new ArrayList<Integer>();
+		
+		for(int i=0;i<help.size();i++) {
+			if(help.get(i).getNumIscritti()!=MAX_VALUE) {
+				noTeam.add(i);
+			}
+		}
+		
+		return getEventTeams(fin, lista, noTeam);
 		
 	
 	}
 	
-	private ArrayList<ArrayList<String>> getEventTeams(ArrayList<ArrayList<Integer>> p, ArrayList<EventEnrollment> l){
+	//Si da in input la divisione in squadre sottoforma di indici e la lista di iscrizioni
+	//e restituisce la divisione in squadre sottoforma di codici id utente delle iscrizioni
+	private ArrayList<ArrayList<String>> getEventTeams(ArrayList<ArrayList<Integer>> p, 
+			ArrayList<EventEnrollment> l, ArrayList<Integer> noTeam){
 		ArrayList<ArrayList<String>> squad = new ArrayList<>();
 		for(int i =0; i<p.size(); i++) {
 			ArrayList<String> squadra = new ArrayList<String>();
@@ -175,6 +225,15 @@ public class EventService implements EventServiceIF {
 			}
 			squad.add(squadra);
 		}
+		//Creazione di un array di Id utenti rifiutati
+		ArrayList<String> idNoTeam = new ArrayList<String>();
+		idNoTeam.add("Non accettati:");
+		
+		for(int i=0;i<noTeam.size();i++) {
+			idNoTeam.add(l.get(noTeam.get(i)).getIdUtenteIscrizione());
+		}
+		//Aggiungo in ultima posizione dell'array di risposta l'array di utenti non accettati
+		squad.add(idNoTeam);
 		return squad;
 	}
 }
