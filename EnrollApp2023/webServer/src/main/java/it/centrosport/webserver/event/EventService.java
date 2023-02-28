@@ -1,8 +1,6 @@
 package it.centrosport.webserver.event;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -92,7 +90,7 @@ public class EventService implements EventServiceIF {
 		}
 		if(nPlayers < MIN_PLAYERS) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Almeno " + MIN_PLAYERS + " giocatori devono partecipare all'evento");
 		
-		Collections.sort(lista);
+		Collections.sort(lista, Collections.reverseOrder());
 		
 		help.addAll(lista);
 		
@@ -129,12 +127,6 @@ public class EventService implements EventServiceIF {
 			idx = new ArrayList<>();
 			par = new ArrayList<>();
 		}
-		
-		
-		
-		System.out.println("Help: " + help);
-		
-		System.out.println("\nLista: " + lista + "\n");
 		
 		//parte flex	
 		for(int i=0; i<help.size(); i++) {
