@@ -1,6 +1,7 @@
 package it.centrosport.webserver.event;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,8 @@ import org.springframework.web.server.ResponseStatusException;
 public class EventService implements EventServiceIF {
 
 	private final static int MAX_TEAM = 5;
+	private final static int FLEX = 2;
+	private final static int MAX_VALUE = 100;
 	private final EventRepositoryIF eventRepository;
 	private final EventEnrollmentRepositoryIF eventEnrollmentRepository;
 	
@@ -64,5 +67,111 @@ public class EventService implements EventServiceIF {
 		if(!event.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid ID");
 		
 		return event.get().getPlayers();
+	}
+
+	@Override
+	public ArrayList<ArrayList<String>> getTeams(String idEvent) {
+		
+	ArrayList<ArrayList<Integer>> fin = new ArrayList<ArrayList<Integer>>();
+	ArrayList<Integer> idx = new ArrayList<Integer>();
+	ArrayList<Integer> par = new ArrayList<Integer>();
+	ArrayList<EventEnrollment> help = new ArrayList<EventEnrollment>();
+	
+	Optional<Event> event = eventRepository.findById(idEvent);
+	if(!event.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Evento non esistente");
+	
+	
+	ArrayList<EventEnrollment> lista = event.get().getPlayers();
+	
+	help.addAll(lista);
+	
+	
+	for(int i=0; i<help.size(); i++) {
+		idx.add(i);
+		par.add(help.get(i).getNumIscritti());
+		int sum = help.get(i).getNumIscritti();
+		
+		if(sum == MAX_TEAM) {
+			fin.add(idx);
+		}
+		
+		for(int j=i+1; j<help.size(); j++) {
+			if(sum + help.get(j).getNumIscritti() == MAX_TEAM) {
+				sum += help.get(j).getNumIscritti();
+				par.add(help.get(j).getNumIscritti());
+				idx.add(j);
+				fin.add(idx);
+			} else if(sum + help.get(j).getNumIscritti() < MAX_TEAM) {
+				par.add(help.get(j).getNumIscritti());
+				sum += help.get(j).getNumIscritti();
+				idx.add(j);
+			}
+		}
+		
+		if(sum == MAX_TEAM) {
+			for(int j=0; j<idx.size(); j++) {
+				help.get(idx.get(j)).setNumIscritti(MAX_VALUE);
+				
+			}
+		}
+		
+		idx = new ArrayList<>();
+		par = new ArrayList<>();
+	}
+	
+	
+	
+	System.out.println("Help: " + help);
+	
+	System.out.println("\nLista: " + lista + "\n");
+	
+	//parte flex	
+	for(int i=0; i<help.size(); i++) {
+		idx.add(i);
+		par.add(help.get(i).getNumIscritti());
+		int sum = help.get(i).getNumIscritti();
+		
+		if(sum == MAX_TEAM) {
+			fin.add(idx);
+		}
+		
+		for(int j=i+1; j<help.size(); j++) {
+			if(sum + help.get(j).getNumIscritti() <= MAX_TEAM + FLEX && sum + help.get(j).getNumIscritti() > MAX_TEAM ) {
+				sum += help.get(j).getNumIscritti();
+				par.add(help.get(j).getNumIscritti());
+				idx.add(j);
+				fin.add(idx);
+			} else if(sum + help.get(j).getNumIscritti() < MAX_TEAM) {
+				par.add(help.get(j).getNumIscritti());
+				sum += help.get(j).getNumIscritti();
+				idx.add(j);
+			}
+		}
+		
+		if(sum == MAX_TEAM) {
+			for(int j=0; j<idx.size(); j++) {
+				help.get(idx.get(j)).setNumIscritti(MAX_VALUE);
+			}
+		}
+		
+		idx = new ArrayList<>();
+		par = new ArrayList<>();
+	}
+	
+	return getEventTeams(fin, lista);
+		
+	
+	}
+	
+	private ArrayList<ArrayList<String>> getEventTeams(ArrayList<ArrayList<Integer>> p, ArrayList<EventEnrollment> l){
+		ArrayList<ArrayList<String>> squad = new ArrayList<>();
+		for(int i =0; i<p.size(); i++) {
+			ArrayList<String> squadra = new ArrayList<String>();
+			for(int j=0; j<p.get(i).size(); j++) {
+				squadra.add(l.get(p.get(i).get(j)).getIdUtenteIscrizione());
+			}
+			squad.add(squadra);
+		}
+		return squad;
 	}
 }
