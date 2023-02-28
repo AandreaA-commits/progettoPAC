@@ -69,4 +69,9 @@ public class EventController implements EventControllerIF{
 	public ArrayList<EventEnrollment> getPlayers(@PathVariable String eventId) {
 		return eventService.getEvent(eventId).getPlayers();
 	}
+	
+	@GetMapping("teams/{eventId}")
+	public ArrayList<ArrayList<String>> getTeams(@PathVariable String eventId) {
+		return eventService.getTeams(eventId);
+	}
 }

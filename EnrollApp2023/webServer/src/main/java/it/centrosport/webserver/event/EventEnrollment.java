@@ -2,7 +2,7 @@ package it.centrosport.webserver.event;
 
 import org.springframework.data.annotation.Id;
 
-public class EventEnrollment {
+public class EventEnrollment implements Comparable<EventEnrollment>{
 
 	@Id
 	private String idEnrollment;
@@ -43,5 +43,10 @@ public class EventEnrollment {
 	}
 	public void setNumIscritti(int numIscritti) {
 		this.numIscritti = numIscritti;
+	}
+
+	@Override
+	public int compareTo(EventEnrollment o) {
+		return this.getNumIscritti() - o.getNumIscritti();
 	}
 }
