@@ -9,7 +9,7 @@ public interface UserServiceIF {
 
 	public User signUp(User newUser);
 
-	public User login(User loggingUser);
+	public User login(User loggingInUser);
 
 	public void logout(User loggingOutUser);
 

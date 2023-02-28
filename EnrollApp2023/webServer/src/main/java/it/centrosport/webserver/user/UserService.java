@@ -48,12 +48,12 @@ public class UserService {
 		return userRepository.save(newUser);
 	}
 	
-	public User login(User loggingUser) {
-		var user = getUserByEmail(loggingUser.getEmail());
+	public User login(User loggingInUser) {
+		var user = getUserByEmail(loggingInUser.getEmail());
 		
 		if(user == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No user with this email found");
 		
-		if(loggingUser.getPassword().equals(user.getPassword())) {
+		if(loggingInUser.getPassword().equals(user.getPassword())) {
 			user.setLoggedIn(true);
 			return userRepository.save(user);
 		}
