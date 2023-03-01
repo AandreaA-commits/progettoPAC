@@ -79,6 +79,14 @@ public class Event {
 	}
 	
 	public void addPlayers(EventEnrollment eventEnrollment) {
+		System.out.println(eventEnrollment.getIdEnrollment());
 		this.players.add(eventEnrollment);
+	}
+	public void removePlayers(EventEnrollment enrollment) {
+		for(int i=0;i<players.size();i++) {
+			if(players.get(i).getIdEnrollment().equals(enrollment.getIdEnrollment())) {
+				players.remove(i);
+			}
+		}
 	}
 }

@@ -17,7 +17,7 @@ public class EventService implements EventServiceIF {
 	private final static int MAX_TEAM = 5;
 	private final static int FLEX = 2;
 	private final static int MAX_VALUE = 100;
-	private final static int MIN_PLAYERS = 10;
+	private final static int MIN_PLAYERS = 1;
 	private final EventRepositoryIF eventRepository;
 	private final EventEnrollmentRepositoryIF eventEnrollmentRepository;
 	
@@ -69,6 +69,7 @@ public class EventService implements EventServiceIF {
 		if(nPlayers >= event.get().getMaxPlayers()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Iscrizioni massime raggiunte");
 		//Controllo  iscrizione di numero minore rispetto una squadra intera
 		if(eventEnrollment.getNumIscritti() > MAX_TEAM) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Numero massimo partecipanti " + MAX_TEAM + " raggiunto");
+		eventEnrollmentRepository.save(eventEnrollment);
 		event.get().addPlayers(eventEnrollment);
 		//Salviamo la lista di iscrizioni in event con anche la nuova aggiunta
 		eventRepository.save(event.get());
@@ -85,6 +86,9 @@ public class EventService implements EventServiceIF {
 	public void deleteEventEnrollment(String id) {
 		Optional<EventEnrollment> eventEnrollmentToDelete = eventEnrollmentRepository.findById(id);
 		if(!eventEnrollmentToDelete.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID non presente");
+		Optional<Event> event= eventRepository.findById(eventEnrollmentToDelete.get().getIdEvent());
+		event.get().removePlayers(eventEnrollmentToDelete.get());
+		eventRepository.save(event.get());
 		eventEnrollmentRepository.delete(eventEnrollmentToDelete.get());
 	}
 
@@ -172,10 +176,6 @@ public class EventService implements EventServiceIF {
 			par.add(help.get(i).getNumIscritti());
 			int sum = help.get(i).getNumIscritti();
 			
-			if(sum == MAX_TEAM) {
-				fin.add(idx);
-			}
-			
 			//Cambia solo la condizione per l'aggiunta nelle squadre
 			for(int j=i+1; j<help.size(); j++) {
 				if(sum + help.get(j).getNumIscritti() <= MAX_TEAM + FLEX && sum + 
@@ -208,7 +208,7 @@ public class EventService implements EventServiceIF {
 				for(int j=0;j<fin.size();j++) {
 					int sumSquad = 0;
 					for(int z=0;z<fin.get(j).size();z++) {
-						sumSquad+= fin.get(j).get(z);
+						sumSquad+= lista.get(fin.get(j).get(z)).getNumIscritti();
 					}
 					if(sumSquad + help.get(i).getNumIscritti()<MAX_TEAM + FLEX) {
 						fin.get(j).add(i);
