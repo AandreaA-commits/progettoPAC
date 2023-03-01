@@ -7,6 +7,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface BookingRepositoryIF extends MongoRepository<Booking, String> {
 	
-	public Optional<Booking> findByidCampoPrenotatoAndDataPrenotazione (String idCampo, LocalDateTime data);
+	public Optional<Booking> findByidCampoPrenotatoAndDatePrenotazione (String idCampo, LocalDateTime data);
 	public Optional<Booking> findById(String id);
 }

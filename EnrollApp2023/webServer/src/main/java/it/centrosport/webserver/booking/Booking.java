@@ -11,17 +11,19 @@ public class Booking {
 	@Id
 	private String idBooking;
 
+	private String emailUtente;
 	private String idCampoPrenotato;
 	private String idUtentePrenotazione;
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Europe/Rome")
-	private LocalDateTime dataPrenotazione;
+	private LocalDateTime datePrenotazione;
 	private int nPostiPrenotati;
 
-	public Booking(String idCampoPrenotato, String idUtentePrenotazione, LocalDateTime dataPrenotazione, int nPostiPrenotati) {
+	public Booking(String idCampoPrenotato, String idUtentePrenotazione, LocalDateTime datePrenotazione, int nPostiPrenotati, String emailUtente) {
 		this.idCampoPrenotato = idCampoPrenotato;
 		this.idUtentePrenotazione = idUtentePrenotazione;
-		this.dataPrenotazione = dataPrenotazione;
+		this.datePrenotazione = datePrenotazione;
 		this.nPostiPrenotati = nPostiPrenotati;
+		this.emailUtente = emailUtente;
 	}
 	
 	public Booking() {}
@@ -41,21 +43,30 @@ public class Booking {
 	public void setIdCampoPrenotato(String idCampoPrenotato) {
 		this.idCampoPrenotato = idCampoPrenotato;
 	}
+	
+	public String getEmailUtente() {
+		return emailUtente; 
+	}
+	
+	public void setEmailUtente(String emailUtente) {
+		this.emailUtente=emailUtente; 
+	}
+	
 
-	public String getIdUtente() {
+	public String getIdUtentePrenotazione() {
 		return idUtentePrenotazione;
 	}
 
-	public void setIdUtente(String idUtentePrenotazione) {
+	public void setIdUtentePrenotazione(String idUtentePrenotazione) {
 		this.idUtentePrenotazione = idUtentePrenotazione;
 	}
 
-	public LocalDateTime getDate() {
-		return dataPrenotazione;
+	public LocalDateTime getDatePrenotazione() {
+		return datePrenotazione;
 	}
 
-	public void setDate(LocalDateTime dataPrenotazione) {
-		this.dataPrenotazione = dataPrenotazione;
+	public void setDatePrenotazione(LocalDateTime datePrenotazione) {
+		this.datePrenotazione = datePrenotazione;
 	}
 
 	public int getPostiPrenotati() {

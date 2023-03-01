@@ -23,9 +23,10 @@ public class BookingController implements BookingControllerIF {
 	private Booking dtoToBooking(BookingDto bookingDto) {
 		var booking = new Booking();
 		booking.setIdCampoPrenotato(bookingDto.getIdCampoPrenotato());
-		booking.setIdUtente(bookingDto.getIdUtente());
-		booking.setDate(bookingDto.getDate());
+		booking.setIdUtentePrenotazione(bookingDto.getIdUtentePrenotazione());
+		booking.setDatePrenotazione(bookingDto.getDatePrenotazione());
 		booking.setPostiPrenotati(bookingDto.getPostiPrenotati());
+		booking.setEmailUtente(bookingDto.getEmailUtente());
 		
 		return booking;
 	}
