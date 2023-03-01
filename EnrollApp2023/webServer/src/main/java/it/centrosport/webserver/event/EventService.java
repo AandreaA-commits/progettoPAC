@@ -47,11 +47,8 @@ public class EventService implements EventServiceIF {
 		if(!eventToDelete.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID non presente");
 		
 		//Cancelliamo anche le prenotazioni inerenti all'evento
-		List<EventEnrollment> enrollments = eventEnrollmentRepository.findAll();
-		for(int i=0;i<enrollments.size();i++) {
-			if(enrollments.get(i).getIdEvent().equals(id)) {
-				eventEnrollmentRepository.delete(enrollments.get(i));
-			}
+		for(int i=0;i<eventToDelete.get().getPlayers().size();i++) {
+			deleteEventEnrollment(eventToDelete.get().getPlayers().get(i).getIdEnrollment());
 		}
 		
 		eventRepository.delete(eventToDelete.get());
