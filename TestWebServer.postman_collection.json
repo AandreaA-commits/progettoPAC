@@ -1,70 +1,16 @@
 {
 	"info": {
-		"_postman_id": "1b82f991-b309-4d64-9f6a-475023c33667",
+		"_postman_id": "6bf2be03-a8a1-4bc9-9a0b-6378bdaa8e20",
 		"name": "TestWebServer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19149539"
+		"_exporter_id": "25235812"
 	},
 	"item": [
 		{
 			"name": "Iterazione1",
 			"item": [
 				{
-					"name": "SignUp Utente",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", () => {\r",
-									"  pm.expect(pm.response.code).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"ciaoAAA\",\r\n    \"lastName\": \"Secondo\",\r\n    \"email\": \"prova2@unibg.it\",\r\n    \"password\": \"main\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/users/signUp",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users",
-								"signUp"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "StampaUtenti",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", () => {\r",
-									"  pm.expect(pm.response.code).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
+					"name": "Stampa Utenti Copy",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -82,39 +28,19 @@
 					"response": []
 				},
 				{
-					"name": "StampaUtente",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", () => {\r",
-									"  pm.expect(pm.response.code).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "Stampa Utente Copy",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:8080/users/63d4309e01b4d21cf5a8af22",
+							"raw": "localhost:8080/users/63b6e88290821548fe478189",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"users",
-								"63d4309e01b4d21cf5a8af22"
+								"63b6e88290821548fe478189"
 							]
 						}
 					},
@@ -122,25 +48,12 @@
 				},
 				{
 					"name": "Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", () => {\r",
-									"  pm.expect(pm.response.code).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"ciaoAAA\",\r\n    \"lastName\": \"Secondo\",\r\n    \"email\": \"prova2@unibg.it\",\r\n    \"password\": \"main\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"\",\r\n    \"lastName\": \"\",\r\n    \"email\": \"Prova@prova.it\",\r\n    \"password\": \"psw\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -162,26 +75,13 @@
 					"response": []
 				},
 				{
-					"name": "Logout",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", () => {\r",
-									"  pm.expect(pm.response.code).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
+					"name": "Logout Utente",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"ciaoAAA\",\r\n    \"lastName\": \"Secondo\",\r\n    \"email\": \"prova2@unibg.it\",\r\n    \"password\": \"main\"\r\n}\r\n",
+							"raw": "{\r\n    \"firstName\": \"prova\",\r\n    \"lastName\": \"prova\",\r\n    \"email\": \"Prova@prova.it\",\r\n    \"password\": \"psw\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -203,73 +103,10 @@
 					"response": []
 				},
 				{
-					"name": "DeleteUtenteEsistente",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", () => {\r",
-									"  pm.expect(pm.response.code).to.eql(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
+					"name": "Cancellazione Utente",
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/users/63d4309e01b4d21cf5a8af22",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users",
-								"63d4309e01b4d21cf5a8af22"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DeleteUtenteNonEsistente",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 404\", () => {\r",
-									"  pm.expect(pm.response.code).to.eql(404);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "localhost:8080/users/63b6f7dcc8b25863c5c58ae6",
 							"host": [
@@ -285,26 +122,13 @@
 					"response": []
 				},
 				{
-					"name": "SignUpUtenteEsistente",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", () => {\r",
-									"  pm.expect(pm.response.code).to.eql(400);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
+					"name": "Registrazione Utente",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\r\n    \"firstName\": \"ciaoAAA\",\r\n    \"lastName\": \"Secondo\",\r\n    \"email\": \"prova2@unibg.it\",\r\n    \"password\": \"main\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"prova\",\r\n    \"lastName\": \"prova\",\r\n    \"email\": \"Prova@prova.it\",\r\n    \"passwdord\": \"psw\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -320,6 +144,598 @@
 							"path": [
 								"users",
 								"signUp"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Iterazione2",
+			"item": [
+				{
+					"name": "Popolazione Iscritti Evento",
+					"item": [
+						{
+							"name": "Crea Iscrizione",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"TestCreaEvento\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idEvent\": \"63ff59ebf517f3362b51f15f\",\n    \"idUtenteIscrizione\": \"A\",\n    \"numIscritti\": \"3\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/events/enroll",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events",
+										"enroll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crea Iscrizione Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"TestCreaEvento\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idEvent\": \"63ff59ebf517f3362b51f15f\",\n    \"idUtenteIscrizione\": \"B\",\n    \"numIscritti\": \"4\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/events/enroll",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events",
+										"enroll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crea Iscrizione Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"TestCreaEvento\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idEvent\": \"63ff59ebf517f3362b51f15f\",\n    \"idUtenteIscrizione\": \"C\",\n    \"numIscritti\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/events/enroll",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events",
+										"enroll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crea Iscrizione Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"TestCreaEvento\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idEvent\": \"63ff59ebf517f3362b51f15f\",\n    \"idUtenteIscrizione\": \"D\",\n    \"numIscritti\": \"2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/events/enroll",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events",
+										"enroll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crea Iscrizione Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"TestCreaEvento\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idEvent\": \"63ff59ebf517f3362b51f15f\",\n    \"idUtenteIscrizione\": \"E\",\n    \"numIscritti\": \"5\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/events/enroll",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events",
+										"enroll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crea Iscrizione Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"TestCreaEvento\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idEvent\": \"63ff59ebf517f3362b51f15f\",\n    \"idUtenteIscrizione\": \"F\",\n    \"numIscritti\": \"2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/events/enroll",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events",
+										"enroll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crea Iscrizione Copy 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"TestCreaEvento\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idEvent\": \"63ff59ebf517f3362b51f15f\",\n    \"idUtenteIscrizione\": \"G\",\n    \"numIscritti\": \"2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/events/enroll",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events",
+										"enroll"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crea Iscrizione Copy 3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"TestCreaEvento\", function(){\r",
+											"    pm.response.to.have.status(400);\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"idEvent\": \"63ff59ebf517f3362b51f15f\",\n    \"idUtenteIscrizione\": \"H\",\n    \"numIscritti\": \"6\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/events/enroll",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"events",
+										"enroll"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "BookingTest",
+					"item": [
+						{
+							"name": "Crea Pitch",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"TestCreaEvento\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"nomeCampoProva5\",\r\n    \"location\": \"locationCampoProva5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/pitches",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"pitches"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "creazione book",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"TestCreaEvento\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idCampoPrenotato\": \"0\",\r\n    \"idUtentePrenotazione\": \"aa\",\r\n    \"idUtente\": \"prova\",\r\n    \"dataPrenotazione\": \"11-12-2023 22:21\",\r\n    \"nPostiPrenotati\": \"2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/bookings",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"bookings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "visualizza bookings",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"TestCreaEvento\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/bookings",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"bookings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Crea Evento",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TestCreaEvento\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Torneo1\",\n    \"location\": \"Location\",\n    \"dateTime\": \"25-02-2023 20:00\",\n    \"maxPlayers\": \"50\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/events",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crea Squadre (Algoritmo) Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TestCreaEvento\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/events/teams/63ff59ebf517f3362b51f15f",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events",
+								"teams",
+								"63ff59ebf517f3362b51f15f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancella Iscrizione Evento",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TestCreaEvento\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/events/enroll/63ff5a26f517f3362b51f160",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events",
+								"enroll",
+								"63ff5a26f517f3362b51f160"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancella Evento",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"TestCreaEvento\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/events/63ff59ebf517f3362b51f15f",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events",
+								"63ff59ebf517f3362b51f15f"
 							]
 						}
 					},
