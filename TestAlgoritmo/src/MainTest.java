@@ -8,6 +8,8 @@ class MainTest {
 
 	@Test
 	void testAlgoritmo() {
+		Main m = new Main();
+		
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 		ArrayList<ArrayList<Integer>> risposta = new ArrayList<ArrayList<Integer>>();
 		ArrayList<Integer> squadra = new ArrayList<Integer>();
