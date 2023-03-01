@@ -1,6 +1,5 @@
 package it.centrosport.webserver.event;
 
-import org.apache.logging.log4j.util.StringBuilderFormattable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
