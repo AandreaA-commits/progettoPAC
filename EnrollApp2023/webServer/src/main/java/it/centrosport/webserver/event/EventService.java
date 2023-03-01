@@ -17,7 +17,7 @@ public class EventService implements EventServiceIF {
 	private final static int MAX_TEAM = 5;
 	private final static int FLEX = 2;
 	private final static int MAX_VALUE = 100;
-	private final static int MIN_PLAYERS = 1;
+	private final static int MIN_PLAYERS = 10;
 	private final EventRepositoryIF eventRepository;
 	private final EventEnrollmentRepositoryIF eventEnrollmentRepository;
 	
