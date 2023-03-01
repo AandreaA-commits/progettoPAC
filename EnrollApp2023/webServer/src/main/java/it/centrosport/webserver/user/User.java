@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 
 public class User {
 	@Id
-	private String id;
+	private String idUser;
 	
 	private String firstName;
 	private String lastName;
@@ -24,7 +24,7 @@ public class User {
 	public User() {}
 
 	public String getId() {
-		return id;
+		return idUser;
 	}
 	
 	public String getFirstName() {

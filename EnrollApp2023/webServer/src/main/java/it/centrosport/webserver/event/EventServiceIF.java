@@ -13,5 +13,11 @@ public interface EventServiceIF {
 
 	public void deleteEvent(String id);
 	
+	public EventEnrollment createEventEnrollment(EventEnrollment eventEnrollment);
+	
+	public ArrayList<EventEnrollment> getPlayers(String idEvent);
+	
+	public void deleteEventEnrollment(String idEventEnrollment);
+	
 	public ArrayList<ArrayList<String>> getTeams(String idEvent);
 }

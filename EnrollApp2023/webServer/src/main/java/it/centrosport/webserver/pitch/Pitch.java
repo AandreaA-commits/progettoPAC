@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 public class Pitch {
 	
 	@Id
-	private String id;
+	private String idPitch;
 	
 	private String location;
 	private String name;
@@ -19,7 +19,7 @@ public class Pitch {
 	}
 	
 	public String getId() {
-		return id;
+		return idPitch;
 	}
 
 	public String getLocation() {
@@ -39,7 +39,7 @@ public class Pitch {
 	}
 	
 	public String toString() {
-		return String.format("Pitch[id=%s, location=%s, name=%s]", id, name, location);
+		return String.format("Pitch[id=%s, location=%s, name=%s]", idPitch, name, location);
 	}
 	
 	

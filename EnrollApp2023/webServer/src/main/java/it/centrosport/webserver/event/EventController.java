@@ -74,4 +74,9 @@ public class EventController implements EventControllerIF{
 	public ArrayList<ArrayList<String>> getTeams(@PathVariable String eventId) {
 		return eventService.getTeams(eventId);
 	}
+
+	@DeleteMapping("enroll/{eventEnrollmentId}")
+	public void deleteEventEnrollment(String eventEnrollmentId) {
+		eventService.deleteEventEnrollment(eventEnrollmentId);
+	}
 }

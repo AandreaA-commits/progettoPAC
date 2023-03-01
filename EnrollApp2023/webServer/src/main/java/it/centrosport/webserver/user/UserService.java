@@ -43,8 +43,6 @@ public class UserService {
 		
 		if(user != null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Mail already used");
 		
-		//Codifica password?
-		
 		return userRepository.save(newUser);
 	}
 	

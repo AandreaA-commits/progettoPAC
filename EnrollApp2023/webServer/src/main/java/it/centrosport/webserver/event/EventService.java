@@ -45,6 +45,15 @@ public class EventService implements EventServiceIF {
 	public void deleteEvent(String id) {
 		Optional<Event> eventToDelete = eventRepository.findById(id);
 		if(!eventToDelete.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID non presente");
+		
+		//Cancelliamo anche le prenotazioni inerenti all'evento
+		List<EventEnrollment> enrollments = eventEnrollmentRepository.findAll();
+		for(int i=0;i<enrollments.size();i++) {
+			if(enrollments.get(i).getIdEvent().equals(id)) {
+				eventEnrollmentRepository.delete(enrollments.get(i));
+			}
+		}
+		
 		eventRepository.delete(eventToDelete.get());
 	}
 
@@ -52,13 +61,16 @@ public class EventService implements EventServiceIF {
 		Optional<Event> event = eventRepository.findById(eventEnrollment.getIdEvent());
 		if(!event.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Evento non esistente");
 		int nPlayers = 0;
+		//Controllo massimo numero di iscritti
 		ArrayList<EventEnrollment> p = event.get().getPlayers();
 		for (EventEnrollment e : p) {
 			nPlayers += e.getNumIscritti();
 		}
 		if(nPlayers >= event.get().getMaxPlayers()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Iscrizioni massime raggiunte");
+		//Controllo  iscrizione di numero minore rispetto una squadra intera
 		if(eventEnrollment.getNumIscritti() > MAX_TEAM) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Numero massimo partecipanti " + MAX_TEAM + " raggiunto");
 		event.get().addPlayers(eventEnrollment);
+		//Salviamo la lista di iscrizioni in event con anche la nuova aggiunta
 		eventRepository.save(event.get());
 		return eventEnrollmentRepository.save(eventEnrollment);
 	}
@@ -68,6 +80,12 @@ public class EventService implements EventServiceIF {
 		if(!event.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid ID");
 		
 		return event.get().getPlayers();
+	}
+	
+	public void deleteEventEnrollment(String id) {
+		Optional<EventEnrollment> eventEnrollmentToDelete = eventEnrollmentRepository.findById(id);
+		if(!eventEnrollmentToDelete.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID non presente");
+		eventEnrollmentRepository.delete(eventEnrollmentToDelete.get());
 	}
 
 	@Override

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Event {
 
 	@Id
-	private String current_id;
+	private String idEvent;
 	
 	private String name;
 	private String location;
@@ -31,7 +31,7 @@ public class Event {
 	}
 
 	public String getId() {
-		return current_id;
+		return idEvent;
 	}
 
 	public String getName() {
@@ -59,7 +59,7 @@ public class Event {
 	}
 
 	public String toString() {
-		return String.format("Event[id=%s, name=%s, location=%s, data e ora=%s]", current_id, name, location, dateTime);
+		return String.format("Event[id=%s, name=%s, location=%s, data e ora=%s]", idEvent, name, location, dateTime);
 	}
 	
 	public ArrayList<EventEnrollment> getPlayers() {
