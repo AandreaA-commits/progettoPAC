@@ -3,6 +3,7 @@ package it.centrosport.webserver.booking;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,15 +38,21 @@ public class BookingService implements BookingServiceIF{
 	}
 	
 	public Booking createBooking(Booking booking) {
-		Optional<Booking> campo = bookingRepository.findByidCampoPrenotatoAndDatePrenotazione(booking.getIdCampoPrenotato(), booking.getDatePrenotazione());
-		if(campo.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Campo già prenotato");
+		List<Booking> bookings = bookingRepository.findAll();
+		
+		for(int i=0; i<bookings.size(); i++) {
+			LocalDateTime temp = bookings.get(i).getDatePrenotazione().plusHours(1);
+			if(bookings.get(i).getIdCampoPrenotato().equals(booking.getIdCampoPrenotato()) &&
+					booking.getDatePrenotazione().isBefore(temp) && booking.getDatePrenotazione().isAfter(bookings.get(i).getDatePrenotazione())){
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Campo già prenotato");
+				
+			}
+		}
 		
 		//inserimento invio email di conferma
 		SimpleMailMessage sms = new SimpleMailMessage();
-		sms.setFrom("ariciandrea1999@gmail.com");
+		sms.setFrom("newsportsrl.communications@gmail.com");
 		sms.setTo(booking.getEmailUtente());
-		//sms.setTo("ariciandrea1999@gmail.com");
-		//sms.setTo("arici.andrea.99@gmail.com");
 		sms.setSubject("Conferma prenotazione NewSport S.R.L.");
 		
 		String corpo_sms = "Volevamo infomarla che la sua prenotazione ha avuto esito positivo \n"+ 
@@ -65,10 +72,8 @@ public class BookingService implements BookingServiceIF{
 		
 		//inserimento invio email di conferma
 				SimpleMailMessage sms = new SimpleMailMessage();
-				sms.setFrom("ariciandrea1999@gmail.com");
+				sms.setFrom("newsportsrl.communications@gmail.com");
 				sms.setTo(bookingToDelete.get().getEmailUtente());
-				//sms.setTo("ariciandrea1999@gmail.com");
-				//sms.setTo("arici.andrea.99@gmail.com");
 				sms.setSubject("Cancellazione prenotazione NewSport S.R.L.");
 				
 				String corpo_sms = "Volevamo infomarla che la sua prenotazione è stata cancellata con successo \n"+ 
