@@ -40,7 +40,7 @@ public class BookingService implements BookingServiceIF{
 		Optional<Booking> campo = bookingRepository.findByidCampoPrenotatoAndDatePrenotazione(booking.getIdCampoPrenotato(), booking.getDatePrenotazione());
 		if(campo.isPresent()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Campo già prenotato");
 		
-		//inserimento invio email di conferma
+		//parametri per l'invio della mail di conferma
 		SimpleMailMessage sms = new SimpleMailMessage();
 		sms.setFrom("ariciandrea1999@gmail.com");
 		sms.setTo(booking.getEmailUtente());
@@ -48,13 +48,14 @@ public class BookingService implements BookingServiceIF{
 		//sms.setTo("arici.andrea.99@gmail.com");
 		sms.setSubject("Conferma prenotazione NewSport S.R.L.");
 		
+		//creazione del corpo del messagio
 		String corpo_sms = "Volevamo infomarla che la sua prenotazione ha avuto esito positivo \n"+ 
 				"Campo prenotato per il giorno: " + booking.getDatePrenotazione() + "\n" +
 				"ID utente che ha effettuato la prenotazione: "+ booking.getIdUtentePrenotazione() + "\n" + 
 				"Prenotazione effettuata per " + booking.getPostiPrenotati() + "giocatori \n" + 
 				"Cordiali saluti\n Il Team di NewSport S.R.L ";
 		sms.setText(corpo_sms);
-		emailSender.send(sms);
+		emailSender.send(sms); //invio dell'email
 		
 		return bookingRepository.save(booking);
 	}
@@ -63,7 +64,7 @@ public class BookingService implements BookingServiceIF{
 		Optional<Booking> bookingToDelete = bookingRepository.findById(id);
 		if(!bookingToDelete.isPresent()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID non presente");
 		
-		//inserimento invio email di conferma
+		//impostazione parametri per invio di email di corretta eliminazione all'utente
 				SimpleMailMessage sms = new SimpleMailMessage();
 				sms.setFrom("ariciandrea1999@gmail.com");
 				sms.setTo(bookingToDelete.get().getEmailUtente());
@@ -71,13 +72,14 @@ public class BookingService implements BookingServiceIF{
 				//sms.setTo("arici.andrea.99@gmail.com");
 				sms.setSubject("Cancellazione prenotazione NewSport S.R.L.");
 				
+				//creazione del corpo del messaggio
 				String corpo_sms = "Volevamo infomarla che la sua prenotazione è stata cancellata con successo \n"+ 
 						"Campo prenotato per il giorno: " + bookingToDelete.get().getDatePrenotazione() + "\n" +
 						"ID utente che ha effettuato la prenotazione: "+ bookingToDelete.get().getIdUtentePrenotazione() + "\n" + 
 						"ID prenotazione: " + id + "\n"+
 						"Cordiali saluti\n Il Team di NewSport S.R.L ";
 				sms.setText(corpo_sms);
-				emailSender.send(sms);
+				emailSender.send(sms); //invio del'email
 		
 		
 		bookingRepository.delete(bookingToDelete.get());
